@@ -5,7 +5,7 @@ if (!location.hash) {
 const roomHash = location.hash.substring(1);
 
 // TODO: Replace with your own channel ID
-const drone = new ScaleDrone('yiS12Ts5RdNhebyM');
+const drone = new ScaleDrone('UQwqaX4xAcgZKPcb');
 // Room name needs to be prefixed with 'observable-'
 const roomName = 'observable-' + roomHash;
 const configuration = {
@@ -62,6 +62,7 @@ function startWebRTC(isOfferer) {
   // message to the other peer through the signaling server
   pc.onicecandidate = event => {
     if (event.candidate) {
+      console.log(' pc.onicecandidate');
       sendMessage({'candidate': event.candidate});
     }
   };
