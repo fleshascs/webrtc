@@ -1,3 +1,6 @@
+const send = document.querySelector('.send');
+const textInput = document.querySelector('.textInput');
+
 // Generate random room name if needed
 if (!location.hash) {
   location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
@@ -33,10 +36,21 @@ drone.on('open', error => {
   room = drone.subscribe(roomName);
   room.on('open', error => {
     console.log('room opened');
+
+    send.addEventListener('click', () => {
+      console.log('clicked');
+      sendMessage({type: 'chat', message:'test: '+textInput.value });
+    });
     if (error) {
       onError(error);
     }
   });
+
+  room.on('message', message => {
+    const {data, id, timestamp, clientId, member} = message;
+    console.log('data', data);
+  });
+
   // We're connected to the room and received an array of 'members'
   // connected to the room (including us). Signaling server is ready.
   room.on('members', members => {
