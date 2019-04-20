@@ -59,8 +59,10 @@ drone.on('open', error => {
         console.log('message: ', data.message);
         break;
       case 'image':
+        const base64Image = getBase64Image();
         console.log('message: ', data);
-        addImage('http://www.fleshas.lt/images/avatars/img_0846_20160710_191617_1_1.jpg');
+        console.log('getBase64Image()', base64Image);
+        addImage(base64Image);
         break;
       default:
         console.log('unhandled message: ', data);
@@ -162,3 +164,14 @@ function addImage(source) {
   container.innerHTML = `<img src="${source}" />`;
   imageContainer.appendChild(container);
 }
+
+function getBase64Image() {
+	var w = localVideo.videoWidth;
+	var h = localVideo.videoHeight;
+	var canvas = document.createElement('canvas');
+	canvas.width  = w;
+	canvas.height = h;
+	var ctx = canvas.getContext('2d');
+  ctx.drawImage(localVideo, 0, 0, w, h);
+  return canvas.toDataURL();
+} 
