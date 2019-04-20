@@ -61,7 +61,6 @@ drone.on('open', error => {
       case 'image':
         const base64Image = getBase64Image();
         console.log('message: ', data);
-        console.log('getBase64Image()', base64Image);
         addImage(base64Image);
         break;
       default:
