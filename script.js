@@ -44,8 +44,7 @@ drone.on('open', error => {
     });
 
     sendPhoto.addEventListener('click', () => {
-      const base64Image = getBase64Image();
-      sendMessage({type: 'image', image: base64Image });
+      sendMessage({type: 'image', image: getBase64Image() });
     }); 
 
     if (error) {
@@ -57,12 +56,12 @@ drone.on('open', error => {
     const {data, id, timestamp, clientId, member} = message;
     switch(data.type) {
       case 'chat':
+        alert('message:'+data.message);
         console.log('message: ', data.message);
         break;
       case 'image':
-        console.log('message: ', data);
+        console.log('image: ', data);
         addImage(data.image);
-        
         break;
       default:
         console.log('unhandled message: ', data);
