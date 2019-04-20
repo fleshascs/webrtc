@@ -23,11 +23,13 @@ function onError(error) {
 };
 
 drone.on('open', error => {
+  console.log('drone opened');
   if (error) {
     return console.error(error);
   }
   room = drone.subscribe(roomName);
   room.on('open', error => {
+    console.log('room opened');
     if (error) {
       onError(error);
     }
@@ -88,6 +90,7 @@ function startWebRTC(isOfferer) {
 
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
+    console.log('room ondata', message);
     // Message was sent by us
     if (client.id === drone.clientId) {
       return;
