@@ -56,7 +56,9 @@ drone.on('open', error => {
     const {data, id, timestamp, clientId, member} = message;
     switch(data.type) {
       case 'chat':
-        alert('message:'+data.message);
+        if (clientId !== drone.clientId) {
+          alert('message:'+data.message);
+        }
         console.log('message: ', data.message);
         break;
       case 'image':
