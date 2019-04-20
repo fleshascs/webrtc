@@ -1,5 +1,7 @@
 const send = document.querySelector('.send');
+const sendPhoto = document.querySelector('.sendPhoto');
 const textInput = document.querySelector('.textInput');
+const imageContainer = document.querySelector('.imageContainer');
 
 // Generate random room name if needed
 if (!location.hash) {
@@ -38,9 +40,13 @@ drone.on('open', error => {
     console.log('room opened');
 
     send.addEventListener('click', () => {
-      console.log('clicked');
-      sendMessage({type: 'chat', message:'test: '+textInput.value });
+      sendMessage({type: 'chat', message: textInput.value });
     });
+
+    sendPhoto.addEventListener('click', () => {
+      sendMessage({type: 'image', image: 'test' });
+    });
+
     if (error) {
       onError(error);
     }
@@ -48,8 +54,18 @@ drone.on('open', error => {
 
   room.on('message', message => {
     const {data, id, timestamp, clientId, member} = message;
-    console.log('data', data);
+    switch(data.type) {
+      case 'chat':
+        console.log('message: ', data.message);
+        break;
+      case 'image':
+        console.log('message: ', data);
+        break;
+      default:
+        console.log('unhandled message: ', data);
+    }
   });
+
 
   // We're connected to the room and received an array of 'members'
   // connected to the room (including us). Signaling server is ready.
