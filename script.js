@@ -60,6 +60,7 @@ drone.on('open', error => {
         break;
       case 'image':
         console.log('message: ', data);
+        addImage('http://www.fleshas.lt/images/avatars/img_0846_20160710_191617_1_1.jpg');
         break;
       default:
         console.log('unhandled message: ', data);
@@ -153,4 +154,11 @@ function localDescCreated(desc) {
     () => sendMessage({'sdp': pc.localDescription}),
     onError
   );
+}
+
+
+function addImage(source) {
+  const  container = document.createElement('span');
+  container.innerHTML = `<img src="${source}" />`;
+  imageContainer.appendChild(container);
 }
