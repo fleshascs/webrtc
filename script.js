@@ -17,7 +17,10 @@ let room;
 let pc;
 
 
-function onSuccess() {};
+function onSuccess() {
+console.log('Success - Add the new ICE candidate to our connections remote description');
+
+};
 function onError(error) {
   console.error(error);
 };
