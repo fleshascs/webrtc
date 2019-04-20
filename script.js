@@ -39,34 +39,34 @@ drone.on('open', error => {
   room.on('open', error => {
     console.log('room opened');
 
-    send.addEventListener('click', () => {
-      sendMessage({type: 'chat', message: textInput.value });
-    });
+    // send.addEventListener('click', () => {
+    //   sendMessage({type: 'chat', message: textInput.value });
+    // });
 
-    sendPhoto.addEventListener('click', () => {
-      sendMessage({type: 'image', image: 'test' });
-    });
+    // sendPhoto.addEventListener('click', () => {
+    //   sendMessage({type: 'image', image: 'test' });
+    // });
 
     if (error) {
       onError(error);
     }
   });
 
-  room.on('message', message => {
-    const {data, id, timestamp, clientId, member} = message;
-    switch(data.type) {
-      case 'chat':
-        console.log('message: ', data.message);
-        break;
-      case 'image':
-        const base64Image = getBase64Image();
-        console.log('message: ', data);
-        addImage(base64Image);
-        break;
-      default:
-        console.log('unhandled message: ', data);
-    }
-  });
+  // room.on('message', message => {
+  //   const {data, id, timestamp, clientId, member} = message;
+  //   switch(data.type) {
+  //     case 'chat':
+  //       console.log('message: ', data.message);
+  //       break;
+  //     case 'image':
+  //       const base64Image = getBase64Image();
+  //       console.log('message: ', data);
+  //       addImage(base64Image);
+  //       break;
+  //     default:
+  //       console.log('unhandled message: ', data);
+  //   }
+  // });
 
 
   // We're connected to the room and received an array of 'members'
