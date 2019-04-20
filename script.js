@@ -57,7 +57,7 @@ drone.on('open', error => {
     switch(data.type) {
       case 'chat':
         if (clientId !== drone.clientId) {
-          alert('message:'+data.message);
+          alert('message: '+data.message);
         }
         console.log('message: ', data.message);
         break;
@@ -104,12 +104,14 @@ function startWebRTC(isOfferer) {
   // If user is offerer let the 'negotiationneeded' event create the offer
   if (isOfferer) {
     pc.onnegotiationneeded = () => {
+      console.log('CREATE OFFER');
       pc.createOffer().then(localDescCreated).catch(onError);
     }
   }
 
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
+    console.log('REMOTE STREAM ARIVED');
     const stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
