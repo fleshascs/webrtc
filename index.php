@@ -1,3 +1,3 @@
 <?php
 
-header('Location: /src/index.html');
+header('Location: /index.html');
