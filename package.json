@@ -2,7 +2,7 @@
   "name": "webrtc",
   "version": "1.0.0",
   "description": "<h1>Video chat App with WebRTC</h1>",
-  "main": "index.html",
+  "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
